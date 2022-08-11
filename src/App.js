@@ -1,101 +1,100 @@
 
 import './App.css';
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import NavBar from './customComponents/NavBar';
 import News  from './customComponents/News';
 import { BrowserRouter, Routes, Route  } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar'
 
-export default class App extends Component {
-apiKey="a99d51173fa7417ca1e8f81a81629cca"
-constructor(props){
-  super(props);
-  this.toggleCountry();
-  this.state={
-    country:"us",
-    progress:0
-  }
+const App =()=> {
+const apiKey="a99d51173fa7417ca1e8f81a81629cca";
+// apiKey=process.env.REACT_API_NEWS_API;
+
+  // toggleCountry();
+  const [progress, setProgress] = useState(0);
+  const [country, setCountry] = useState("us")
+
+
+
+
+const toggleCountry=(country)=>{
+console.log(country);
+  setCountry(country);
 }
 
-setProgress = (progress)=>{
-this.setState({progress: progress});
-}
 
-toggleCountry=(e)=>{
-console.log(e);
-  this.setState({country:e})
-}
-
-  render() {
     
     return (
       <div>
+
+
+
+
+
 <BrowserRouter>
-<LoadingBar color='#f11946' progress={this.state.progress}  height={3} />
-<NavBar title="JNN" country={this.toggleCountry} countryToshow={this.state.country}/>
-
-
+<LoadingBar color='#f11946' progress={progress}  height={3} />
+<NavBar title="JNN" country={toggleCountry} countryToshow={country}/>
 
         <Routes>
-          <Route    path="/home" element={<News apiKey={this.apiKey} key="general" noOfPages={12} setProgress={this.setProgress}  country={this.state.country} category="general"/>} />
-          <Route  exact  path="/" element={<News apiKey={this.apiKey} key="general" noOfPages={12} setProgress={this.setProgress} country={this.state.country} category="general"/>} />
-          <Route  exact  path="/business" element={<News apiKey={this.apiKey} key="business" noOfPages={12}setProgress={this.setProgress}  country={this.state.country} category="business"/>} />
-          <Route  exact  path="/entertainment" element={<News apiKey={this.apiKey} key="entertainment" setProgress={this.setProgress}  noOfPages={12} country={this.state.country} category="entertainment"/>} />
-          <Route  exact  path="/health" element={<News apiKey={this.apiKey} key="health" noOfPages ={12} setProgress={this.setProgress}  country={this.state.country} category="health"/>} />
-          <Route  exact  path="/science" element={<News apiKey={this.apiKey} key="science" noOfPages={12} setProgress={this.setProgress}  country={this.state.country} category="science"/>} />
-          <Route  exact  path="/sports" element={<News apiKey={this.apiKey} key="sports" noOfPages={12} setProgress={this.setProgress}  country={this.state.country} category="sports"/>} />
-          <Route  exact  path="/technology" element={<News apiKey={this.apiKey} key="technology" noOfPages={12} setProgress={this.setProgress}   country={this.state.country} category="technology"/>} />
+          <Route    path="/home" element={<News apiKey={apiKey} key="general" articlesPerPage={12} setProgress={setProgress}  country={country} category="general"/>} />
+          <Route  exact  path="/" element={<News apiKey={apiKey} key="general" articlesPerPage={12} setProgress={setProgress} country={country} category="general"/>} />
+          <Route  exact  path="/business" element={<News apiKey={apiKey} key="business" articlesPerPage={12}setProgress={setProgress}  country={country} category="business"/>} />
+          <Route  exact  path="/entertainment" element={<News apiKey={apiKey} key="entertainment" setProgress={setProgress}  articlesPerPage={12} country={country} category="entertainment"/>} />
+          <Route  exact  path="/health" element={<News apiKey={apiKey} key="health" articlesPerPage ={12} setProgress={setProgress}  country={country} category="health"/>} />
+          <Route  exact  path="/science" element={<News apiKey={apiKey} key="science" articlesPerPage={12} setProgress={setProgress}  country={country} category="science"/>} />
+          <Route  exact  path="/sports" element={<News apiKey={apiKey} key="sports" articlesPerPage={12} setProgress={setProgress}  country={country} category="sports"/>} />
+          <Route  exact  path="/technology" element={<News apiKey={apiKey} key="technology" articlesPerPage={12} setProgress={setProgress}   country={country} category="technology"/>} />
           
-          <Route  exact  path="/at" element={<News apiKey={this.apiKey} key="at" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/au" element={<News apiKey={this.apiKey} key="au" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/be" element={<News apiKey={this.apiKey} key="be" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/bg" element={<News apiKey={this.apiKey} key="bg" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/br" element={<News apiKey={this.apiKey} key="br" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/ca" element={<News apiKey={this.apiKey} key="ca" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/ch" element={<News apiKey={this.apiKey} key="ch" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/cn" element={<News apiKey={this.apiKey} key="cn" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/co" element={<News apiKey={this.apiKey} key="co" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/cu" element={<News apiKey={this.apiKey} key="cu" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/cz" element={<News apiKey={this.apiKey} key="cz" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/de" element={<News apiKey={this.apiKey} key="de" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/eg" element={<News apiKey={this.apiKey} key="eg" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/fr" element={<News apiKey={this.apiKey} key="fr" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/gb" element={<News apiKey={this.apiKey} key="gb" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/gr" element={<News apiKey={this.apiKey} key="gr" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/hk" element={<News apiKey={this.apiKey} key="hk" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/hu" element={<News apiKey={this.apiKey} key="hu" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/id" element={<News apiKey={this.apiKey} key="id" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/ie" element={<News apiKey={this.apiKey} key="ie" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/il" element={<News apiKey={this.apiKey} key="il" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/in" element={<News apiKey={this.apiKey} key="in" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/it" element={<News apiKey={this.apiKey} key="it" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/jp" element={<News apiKey={this.apiKey} key="jp" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/kr" element={<News apiKey={this.apiKey} key="kr" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/lv" element={<News apiKey={this.apiKey} key="lv" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/ma" element={<News apiKey={this.apiKey} key="ma" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/mx" element={<News apiKey={this.apiKey} key="mx" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/my" element={<News apiKey={this.apiKey} key="my" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/ng" element={<News apiKey={this.apiKey} key="ng" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/nl" element={<News apiKey={this.apiKey} key="nl" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/no" element={<News apiKey={this.apiKey} key="no" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/nz" element={<News apiKey={this.apiKey} key="nz" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/ph" element={<News apiKey={this.apiKey} key="ph" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/pl" element={<News apiKey={this.apiKey} key="pl" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/pt" element={<News apiKey={this.apiKey} key="pt" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/ro" element={<News apiKey={this.apiKey} key="ro" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/rs" element={<News apiKey={this.apiKey} key="rs" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/ru" element={<News apiKey={this.apiKey} key="ru" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/sa" element={<News apiKey={this.apiKey} key="sa" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/se" element={<News apiKey={this.apiKey} key="se" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/si" element={<News apiKey={this.apiKey} key="si" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/sk" element={<News apiKey={this.apiKey} key="sk" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/th" element={<News apiKey={this.apiKey} key="th" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/tr" element={<News apiKey={this.apiKey} key="tr" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/tw" element={<News apiKey={this.apiKey} key="tw" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/ua" element={<News apiKey={this.apiKey} key="ua" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/us" element={<News apiKey={this.apiKey} key="us" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/ve" element={<News apiKey={this.apiKey} key="ve" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
-          <Route  exact  path="/za" element={<News apiKey={this.apiKey} key="za" noOfPages={12} setProgress={this.setProgress} country={this.state.country} />} />
+          <Route  exact  path="/at" element={<News apiKey={apiKey} key="at" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/au" element={<News apiKey={apiKey} key="au" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/be" element={<News apiKey={apiKey} key="be" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/bg" element={<News apiKey={apiKey} key="bg" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/br" element={<News apiKey={apiKey} key="br" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/ca" element={<News apiKey={apiKey} key="ca" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/ch" element={<News apiKey={apiKey} key="ch" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/cn" element={<News apiKey={apiKey} key="cn" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/co" element={<News apiKey={apiKey} key="co" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/cu" element={<News apiKey={apiKey} key="cu" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/cz" element={<News apiKey={apiKey} key="cz" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/de" element={<News apiKey={apiKey} key="de" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/eg" element={<News apiKey={apiKey} key="eg" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/fr" element={<News apiKey={apiKey} key="fr" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/gb" element={<News apiKey={apiKey} key="gb" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/gr" element={<News apiKey={apiKey} key="gr" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/hk" element={<News apiKey={apiKey} key="hk" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/hu" element={<News apiKey={apiKey} key="hu" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/id" element={<News apiKey={apiKey} key="id" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/ie" element={<News apiKey={apiKey} key="ie" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/il" element={<News apiKey={apiKey} key="il" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/in" element={<News apiKey={apiKey} key="in" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/it" element={<News apiKey={apiKey} key="it" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/jp" element={<News apiKey={apiKey} key="jp" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/kr" element={<News apiKey={apiKey} key="kr" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/lv" element={<News apiKey={apiKey} key="lv" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/ma" element={<News apiKey={apiKey} key="ma" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/mx" element={<News apiKey={apiKey} key="mx" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/my" element={<News apiKey={apiKey} key="my" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/ng" element={<News apiKey={apiKey} key="ng" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/nl" element={<News apiKey={apiKey} key="nl" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/no" element={<News apiKey={apiKey} key="no" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/nz" element={<News apiKey={apiKey} key="nz" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/ph" element={<News apiKey={apiKey} key="ph" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/pl" element={<News apiKey={apiKey} key="pl" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/pt" element={<News apiKey={apiKey} key="pt" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/ro" element={<News apiKey={apiKey} key="ro" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/rs" element={<News apiKey={apiKey} key="rs" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/ru" element={<News apiKey={apiKey} key="ru" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/sa" element={<News apiKey={apiKey} key="sa" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/se" element={<News apiKey={apiKey} key="se" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/si" element={<News apiKey={apiKey} key="si" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/sk" element={<News apiKey={apiKey} key="sk" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/th" element={<News apiKey={apiKey} key="th" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/tr" element={<News apiKey={apiKey} key="tr" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/tw" element={<News apiKey={apiKey} key="tw" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/ua" element={<News apiKey={apiKey} key="ua" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/us" element={<News apiKey={apiKey} key="us" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/ve" element={<News apiKey={apiKey} key="ve" articlesPerPage={12} setProgress={setProgress} country={country} />} />
+          <Route  exact  path="/za" element={<News apiKey={apiKey} key="za" articlesPerPage={12} setProgress={setProgress} country={country} />} />
 
 
         </Routes>
@@ -107,5 +106,5 @@ console.log(e);
       </div>
     )
   }
-}
+export default App;
 
